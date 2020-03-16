@@ -1,4 +1,18 @@
 ## 配置开发环境
 1. 安装 VS2019 Community （选择DotNet桌面开发和Asp.Net)
     1. 创建C# .netFramework (4.5.2)控制台项目后，添加实体数据模型，发现没有 MySQL
-    
+2. 解决问题：添加实体数据模型中，没有MySQL。
+    1. 来自官方的版本对照表格
+        1. 第一行对照关系
+            1. MySQL for Visual Studio Version (2.0)
+            2. MySQL Connector/NET Version Supported (8.0 6.10 6.9)
+            3. Visual Studio Version Supported (2017 2015 2013 2012)
+            4. MySQL Server Versions Supported (5.7 5.6 5.5)
+            5. Enables MySQL Configurations Manager and code editors(with MySQL 5.7)
+        2. 第二行对照关系
+            1. MySQL for Visual Studio Version (1.2)
+            2. MySQL Connector/NET Version Supported (8.0 6.10 6.9)
+            3. Visual Studio Version Supported (2017 2015 2013 2012)
+            4. MySQL Server Versions Supported (8.0 5.7 5.6 5.5)
+            5. Support for MySQL 8.0 features requires MySQL for Visual Studio 1.2.8 or higher
+            
