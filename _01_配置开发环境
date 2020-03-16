@@ -1,2 +1,4 @@
 ## 配置开发环境
 1. 安装 VS2019 Community （选择DotNet桌面开发和Asp.Net)
+    1. 创建C# .netFramework (4.5.2)控制台项目后，添加实体数据模型，发现没有 MySQL
+    
