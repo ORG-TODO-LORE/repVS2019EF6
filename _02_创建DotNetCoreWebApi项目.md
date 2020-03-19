@@ -150,3 +150,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Model.xml"));
 ```
+
+## 配置好Swagger，但是发布后IIS启动报500的问题
+1. 你可以将 IncludeXmlComments 这个过程的前后代码使用异常捕获
+2. 必须在vs中切换为Release，再次勾选一下xml文件生成的配置，再发布就可以了
