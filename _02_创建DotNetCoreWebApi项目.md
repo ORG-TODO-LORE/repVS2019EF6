@@ -104,3 +104,22 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 5. 编译启动测试
 6. 坑1：Internal Server Error /swagger/v1/swagger.json
     1. 请确保所有Action都加上了HttpPost或HttpGet等特性
+
+## 生成Swagger 注释
+1. 方法添加文档注释，如下：
+```
+/// <summary>
+/// 这里是接口的功能说明
+/// </summary>
+/// <param name="para1">这里是参数para1的说明</param>
+/// <returns>这里是返回说明</returns>
+[HttpGet]
+public HttpResponseMessage TestAct1([FromQuery]string para1)
+{
+    HttpResponseMessage res = new HttpResponseMessage();
+    res.StatusCode = System.Net.HttpStatusCode.OK;
+    res.Content = new StringContent("{A:1, B:2}");
+    return res;
+}
+```
+2. 编译运行后发现没有效果，是项目设置中没有指定生成xml的路径。（操作方法略）
