@@ -125,3 +125,10 @@ public HttpResponseMessage TestAct1([FromQuery]string para1)
 2. 编译运行后发现没有效果，是项目设置中没有指定生成xml的路径。
     1. 项目，属性，生成：先设置输出路径为： bin\Debug\netcoreapp2.1\，再勾选上 xml生成路径
 3. 禁用1591警告
+4. 添加 xml 的路径，以显示接口注释
+```
+// 为 Swagger JSON and UI设置xml文档注释路径
+var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
+var xmlPath = Path.Combine(basePath, "SwaggerDemo.xml");
+c.IncludeXmlComments(xmlPath);
+```
