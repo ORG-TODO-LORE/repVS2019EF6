@@ -17,3 +17,17 @@
                 );
             });
 ```
+
+## 添加测试的Controller与Action
+1. 在刚添加的Area中添加一个ApiController
+2. 添加一个Action，代码如下
+```
+[HttpGet]
+public HttpResponseMessage TestAct1([FromQuery]string para1)
+{
+            HttpResponseMessage res = new HttpResponseMessage();
+            res.StatusCode = System.Net.HttpStatusCode.OK;
+            res.Content = new StringContent("{A:1, B:2}");
+            return res;
+}
+```
