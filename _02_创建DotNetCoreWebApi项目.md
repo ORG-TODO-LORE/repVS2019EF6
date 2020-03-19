@@ -102,3 +102,5 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 5. 编译启动测试
+6. 坑1：Internal Server Error /swagger/v1/swagger.json
+    1. 请确保所有Action都加上了HttpPost或HttpGet等特性
