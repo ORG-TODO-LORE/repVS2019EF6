@@ -32,3 +32,19 @@ public HttpResponseMessage TestAct1([FromQuery]string para1)
 }
 ```
 3. 尝试使用 http://localhost:10670/api/BIMComp/BIMCompFamily/TestAct1?para1=2 访问，发现无法访问
+4. 修改刚添加的Controller的Route标记，修改后代码如下：
+```
+[Route("api/BIMComp/[controller]/[action]")]
+[ApiController]
+public class BIMCompFamilyController : ControllerBase
+{
+            [HttpGet]
+            public HttpResponseMessage TestAct1([FromQuery]string para1)
+            {
+                        HttpResponseMessage res = new HttpResponseMessage();
+                        res.StatusCode = System.Net.HttpStatusCode.OK;
+                        res.Content = new StringContent("{A:1, B:2}");
+                        return res;
+            }
+}
+```
