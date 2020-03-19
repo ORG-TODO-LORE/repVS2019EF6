@@ -145,3 +145,8 @@ public void ConfigureServices(IServiceCollection services)
     services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddWebApiConventions(); 
 }
 ```
+5. 为引用的其它类库也添加接口注释，先将其它类库 设置输出路径为： bin\Debug\netcoreapp2.1\，再勾选上 xml生成路径
+6. 再添加以下代码
+```
+c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Model.xml"));
+```
