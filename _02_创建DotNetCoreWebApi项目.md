@@ -48,3 +48,7 @@ public class BIMCompFamilyController : ControllerBase
             }
 }
 ```
+5. 访问后，发现数据不正确
+
+## 添加 WebApiCompatShim
+1. 使用程序包管理控制台，安装 WebApiCompatShim：Install-Package Microsoft.AspNetCore.Mvc.WebApiCompatShim -Version 2.1.3
