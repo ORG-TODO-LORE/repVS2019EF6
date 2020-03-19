@@ -31,3 +31,4 @@ public HttpResponseMessage TestAct1([FromQuery]string para1)
             return res;
 }
 ```
+3. 尝试使用 http://localhost:10670/api/BIMComp/BIMCompFamily/TestAct1?para1=2 访问，发现无法访问
