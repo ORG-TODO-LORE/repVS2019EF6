@@ -53,3 +53,4 @@ public class BIMCompFamilyController : ControllerBase
 ## 添加 WebApiCompatShim
 1. 使用程序包管理控制台，安装 WebApiCompatShim：Install-Package Microsoft.AspNetCore.Mvc.WebApiCompatShim -Version 2.1.3
 2. 修改 services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)，在其后追加：.AddWebApiConventions();
+3. 调试：直接运行，再附加到进程，dotnet.exe，别忘了打断点
