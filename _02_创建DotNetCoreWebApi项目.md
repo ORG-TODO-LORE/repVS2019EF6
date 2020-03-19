@@ -127,8 +127,21 @@ public HttpResponseMessage TestAct1([FromQuery]string para1)
 3. 禁用1591警告
 4. 添加 xml 的路径，以显示接口注释
 ```
-// 为 Swagger JSON and UI设置xml文档注释路径
-var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
-var xmlPath = Path.Combine(basePath, "SwaggerDemo.xml");
-c.IncludeXmlComments(xmlPath);
+// This method gets called by the runtime. Use this method to add services to the container.
+public void ConfigureServices(IServiceCollection services)
+{
+    // 将 Swagger 生成器添加到 Startup.ConfigureServices 方法中的服务集合中：
+    services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+
+        // 为 Swagger JSON and UI设置xml文档注释路径
+        var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
+
+        var xmlPath = Path.Combine(basePath, "WebApplication2.xml");
+        c.IncludeXmlComments(xmlPath);
+    });
+
+    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddWebApiConventions(); 
+}
 ```
