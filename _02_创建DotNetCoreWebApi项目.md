@@ -166,3 +166,7 @@ c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Model.xml"));
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.1" />
   </ItemGroup>
 ```
+3. 管理员cmd进入csproj所在目录，执行如下命令：
+```
+dotnet ef dbcontext scaffold "server=www.xxx.cn;uid=root;pwd=xxx.;port=3306;database=probim;" "Pomelo.EntityFrameworkCore.MySql" -c PanoramaContext -o AutoModels -f
+```
