@@ -218,3 +218,53 @@ public TestController(IConfiguration configuration)
 ```
 var a = _configuration["Connection:ConnectionString"];
 ```
+
+## 一个可用的T4模板（原理是读取文件夹内的文件）
+```
+<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\ProBIM.Panorama.Model\bin\Debug\netcoreapp2.1\netcoreapp2.1\ProBIM.Panorama.Model.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+
+public class HelloWorld
+{
+<#
+	//脚本运行路径
+    string currentPath = Path.GetDirectoryName(Host.TemplateFile);
+
+	//解决方案路径
+	int lastDotIndex = currentPath.LastIndexOf(".");
+	string modelDllPath = currentPath.Substring(0, lastDotIndex) + ".Model";
+	string dirPath = modelDllPath + @"\AutoModels";
+
+	// 加载 modelDllPath 也就是 Model.dll
+	//Assembly ass;
+
+	// 读取 D:\00_Cor...odel\AutoModels 下的cs文件
+	string[] filePaths = Directory.GetFiles(dirPath);
+	List<string> names = new List<string>();
+	for (int i = 0; i < filePaths.Length; i++)
+	{
+		string tname = Path.GetFileNameWithoutExtension(filePaths[i]);
+		names.Add(tname);
+	}
+#><#
+	for (int i = 0; i < names.Count; i++)
+	{
+#>
+	
+	public partial class <#=names[i] #>BLL
+	{
+	}
+<#	}
+#>
+	//<#= currentPath#>
+	//<#= names[0]#>
+}
+```
