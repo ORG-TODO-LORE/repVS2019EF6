@@ -270,3 +270,12 @@ namespace ProBIM.Panorama.BLL.Extend
 	//<#= names[0]#>
 }
 ```
+
+## 其它类库（项目）读取配置文件：使用 AppConfigurtaionServices 的 Common 类
+```
+public Startup(IConfiguration configuration)
+{
+    Configuration = configuration;
+    AppConfigurtaionServices.Configuration = configuration;
+}
+```
