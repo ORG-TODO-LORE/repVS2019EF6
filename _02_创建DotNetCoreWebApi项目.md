@@ -231,8 +231,10 @@ var a = _configuration["Connection:ConnectionString"];
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 using System;
+using ProBIM.Panorama.IBLL.Extend;
+using ProBIM.Panorama.Model.AutoModels;
 
-public class HelloWorld
+namespace ProBIM.Panorama.BLL.Extend
 {
 <#
 	//脚本运行路径
@@ -259,7 +261,7 @@ public class HelloWorld
 	{
 #>
 	
-	public partial class <#=names[i] #>BLL
+	public partial class <#=names[i] #>BLL : BaseBLL<<#=names[i] #>>, I<#=names[i] #>BLL
 	{
 	}
 <#	}
