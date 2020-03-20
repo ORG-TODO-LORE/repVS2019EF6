@@ -174,20 +174,15 @@ dotnet ef dbcontext scaffold "server=www.xxx.cn;uid=root;pwd=xxx.;port=3306;data
 ## 指定 DbContext 为其它的连接字符串
 1. 添加DbContext子类的分部类，注意命名空间：
 ```
-   public partial class PanoramaContext
+    public partial class PanoramaContext
     {
-        protected string ConnectionString;
-
-        public PanoramaContext(string _ConnectionString)
-        {
-            this.ConnectionString = _ConnectionString;
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql(ConnectionString);
+                var connectionString = AppConfigurtaionServices.Configuration["Connection:ConnectionString"];
+                string OriginConnStr = JingruiZhang.Util.StringExtension.DecryptByAES(connectionString, "ixxxxxx3", "1xxxxgzxx8rxxxvx");
+                optionsBuilder.UseMySql(OriginConnStr);
             }
         }
     }
