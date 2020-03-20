@@ -193,3 +193,28 @@ dotnet ef dbcontext scaffold "server=www.xxx.cn;uid=root;pwd=xxx.;port=3306;data
     }
 ```
 2. 注意使用的地方，调用构件函数需要传入连接字符串
+3. 添加配置项：
+```
+{
+  "Connection": {
+    "ConnectionString": "<这里是连接字符串>"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
+```
+4. 读取配置项
+```
+private IConfiguration _configuration;
+public TestController(IConfiguration configuration)
+{
+    _configuration = configuration;
+}
+```
+```
+var a = _configuration["Connection:ConnectionString"];
+```
