@@ -274,3 +274,28 @@ public Startup(IConfiguration configuration)
     AppConfigurtaionServices.Configuration = configuration;
 }
 ```
+
+## AutoFac 使用
+1. Nuget添加AutoFac，这里版本是：5.1.2
+2. 确保BaseBLL的泛型类继承于 BaseBLL 的非泛型类
+3. 使用一个静态类的成员引用（如 AppConfigurtaionServices.Container）container 对象
+4. 在 Startup 中初始化静态成员
+```
+var builder = new ContainerBuilder();
+//注册程序集下所有类型
+builder.RegisterAssemblyTypes(typeof(BaseBLL).Assembly).AsImplementedInterfaces();
+//using (var container = builder.Build())
+//{
+//    var dogs = container.Resolve<IEnumerable<IDog>>();
+//    foreach (var dog in dogs)
+//    {
+//        Console.WriteLine($"名称：{dog.Name},品种：{dog.Breed}");
+//    }
+//}
+AppConfigurtaionServices.Idisposible_Container = builder.Build();
+```
+5. 使用
+```
+// todo AutoFac
+IBaseUserBLL bubll = AppConfigurtaionServices.Idisposible_Container.Resolve<IBaseUserBLL>();
+```
