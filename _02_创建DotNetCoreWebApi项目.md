@@ -157,14 +157,14 @@ c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Model.xml"));
 
 ## 生成 DbContext
 1. 注意使用 dotnet ef 命令如果报：无法执行，因为找不到指定的命令或文件，则需要先执行 dotnet tool install --global dotnet-ef --version 2.1.0-*
-2. 编辑csproj文件，添加如下引用：
+2. ~~编辑csproj文件，添加如下引用：~~ 注意使用程序包管理控制台在指定项目下安装以下包，需要带上 -version 参数
 ```
-  <ItemGroup>
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.1" />
-  </ItemGroup>
+<PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+</PackageReference>
+<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
 ```
 3. 管理员cmd进入csproj所在目录，执行如下命令：
 ```
